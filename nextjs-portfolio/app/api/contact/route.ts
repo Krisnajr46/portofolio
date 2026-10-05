@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function POST(req: Request) {
   try {
     const b = await req.json().catch(() => null);
@@ -22,9 +20,10 @@ export async function POST(req: Request) {
       );
     }
 
+    const apiKey = process.env.RESEND_API_KEY;
     const contactEmail = process.env.CONTACT_EMAIL;
 
-    if (!process.env.RESEND_API_KEY || !contactEmail) {
+    if (!apiKey || !contactEmail) {
       console.error("Resend environment variables are missing");
 
       return NextResponse.json(
@@ -35,6 +34,8 @@ export async function POST(req: Request) {
         { status: 500 }
       );
     }
+
+    const resend = new Resend(apiKey);
 
     const { data, error } = await resend.emails.send({
       from: "Portfolio <onboarding@resend.dev>",
