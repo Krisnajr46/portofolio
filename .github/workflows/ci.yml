@@ -22,12 +22,16 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: nextjs-portfolio/package-lock.json
 
       - name: Install dependencies
+        working-directory: ./nextjs-portfolio
         run: npm ci
 
       - name: Lint
+        working-directory: ./nextjs-portfolio
         run: npm run lint
 
       - name: Build
+        working-directory: ./nextjs-portfolio
         run: npm run build

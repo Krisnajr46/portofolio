@@ -24,7 +24,7 @@ jobs:
           script: |
             set -e
 
-            cd ~/project3/nextjs-portfolio
+            cd ~/project3
 
             echo "================================="
             echo "Deploying Next.js Portfolio"
