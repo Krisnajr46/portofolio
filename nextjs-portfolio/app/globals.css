@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body { @apply bg-bg text-slate-100 antialiased overflow-x-hidden; -webkit-tap-highlight-color: transparent; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body::before { content: ""; position: fixed; inset: 0; z-index: -1; animation: grid 30s linear infinite;
+    background: linear-gradient(rgba(59,130,246,.05) 1px, transparent 1px) 0 0/48px 48px,
+      linear-gradient(90deg, rgba(59,130,246,.05) 1px, transparent 1px) 0 0/48px 48px,
+      radial-gradient(60% 50% at 80% 0, rgba(34,211,238,.12), transparent),
+      radial-gradient(50% 40% at 0 20%, rgba(59,130,246,.15), transparent); }
+  input, textarea { font-size: 16px; }
+  a, button { touch-action: manipulation; }
+  :focus-visible { outline: 2px solid #22d3ee; outline-offset: 2px; }
+}
+@layer components {
+  .card { @apply rounded-2xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-primary/60 hover:shadow-glow; }
+  .tag { @apply inline-block rounded-md border border-primary/20 bg-primary/10 px-2.5 py-0.5 font-mono text-xs text-blue-300; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-5 text-sm font-semibold transition hover:border-primary; }
+  .btn-pri { @apply border-transparent bg-gradient-to-br from-primary to-blue-600 shadow-glow; }
+}
+@keyframes grid { to { background-position: 48px 48px, 48px 48px, 0 0, 0 0; } }
+@media (prefers-reduced-motion: reduce) { *, ::before { animation: none !important; transition: none !important; } html { scroll-behavior: auto; } }
